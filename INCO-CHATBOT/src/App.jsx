@@ -11,9 +11,9 @@ function App() {
     {
       conditions: {
         all: [
-          { fact: 'Edad', operator: 'greaterThan', value: 21 },
-          { fact: 'Edad', operator: 'lessThan', value: 25 },
-          { fact: 'NoEstudia', operator: 'equal', value: true }
+          { fact: 'edad', operator: 'greaterThan', value: 21 },
+          { fact: 'edad', operator: 'lessThan', value: 25 },
+          { fact: 'noEstudia', operator: 'equal', value: true }
         ]
       },
       event: {
@@ -23,10 +23,11 @@ function App() {
         }
       }
     },
+    
     {
       conditions: {
         all: [
-          { fact: 'Edad', operator: 'greaterThan', value: 25 }
+          { fact: 'edad', operator: 'greaterThan', value: 25 },
         ]
       },
       event: {
@@ -36,29 +37,30 @@ function App() {
         }
       }
     },
+
     {
       conditions: {
         all: [
-          { fact: 'CondicionLaboralProgenitor', operator: 'equal', value: 'Formal' }
+          { fact: 'condicionLaboral', operator: 'equal', value: 'Formal' },
         ]
       },
       event: {
         type: 'alimentante',
         params: {
-          alimentante: 'Progenitor'
+          recomendacion: 'alimentante'
         }
       }
     },
-    // Agrega más reglas aquí
+
+
   ];
 
   const [engine, setEngine] = useState(null);
   const [hechos, setHechos] = useState({
-    Edad: 22,
-    NoEstudia: true,
-    CondicionLaboralProgenitor: "Formal"
+    edad: 22,
+    noEstudia: true,
+    condicionLaboral: "Formal"
   });
-  const [resultados, setResultados] = useState([]);
 
   useEffect(() => {
     const motor = new Engine();
@@ -71,13 +73,16 @@ function App() {
       console.error('Motor no inicializado');
       return;
     }
+    engine
+      .run(hechos)
+      .then(({ events }) => {
+        console.log(events);
+        
+        console.log('-----------------------');
+        
+        events.map(event => console.log(event.params))
+      })
 
-    try {
-      const { events } = await engine.run(hechos);
-      setResultados(events.map(event => event.params.recomendacion || event.params.alimentante));
-    } catch (error) {
-      console.error('Error ejecutando el motor:', error);
-    }
   };
 
   const [count, setCount] = useState(0)
@@ -119,23 +124,23 @@ function App() {
             Edad:
             <input
               type="number"
-              value={hechos.Edad}
-              onChange={e => setHechos({ ...hechos, Edad: parseInt(e.target.value, 10) })}
+              value={hechos.edad}
+              onChange={e => setHechos({ ...hechos, edad: parseInt(e.target.value, 10) })}
             />
           </label>
           <label>
             No estudia:
             <input
               type="checkbox"
-              checked={hechos.NoEstudia}
-              onChange={e => setHechos({ ...hechos, NoEstudia: e.target.checked })}
+              checked={hechos.noEstudia}
+              onChange={e => setHechos({ ...hechos, noEstudia: e.target.checked })}
             />
           </label>
           <label>
             Condición laboral del progenitor:
             <select
-              value={hechos.CondicionLaboralProgenitor}
-              onChange={e => setHechos({ ...hechos, CondicionLaboralProgenitor: e.target.value })}
+              value={hechos.condicionLaboral}
+              onChange={e => setHechos({ ...hechos, condicionLaboral: e.target.value })}
             >
               <option value="Formal">Formal</option>
               <option value="Informal">Informal</option>
@@ -145,11 +150,6 @@ function App() {
         <button onClick={ejecutarReglas}>Ejecutar Reglas</button>
         <div>
           <h2>Resultados</h2>
-          <ul>
-            {resultados.map((resultado, index) => (
-              <li key={index}>{resultado}</li>
-            ))}
-          </ul>
         </div>
       </div>
 
