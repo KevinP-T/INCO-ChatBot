@@ -1,0 +1,509 @@
+{
+    "name": "Rules",
+	"attributes": [
+		{
+			"name": "edad",
+			"type": "number"
+		},
+		{
+			"name": "estudia",
+			"type": "number"
+		},
+		{
+			"name": "condicionLaboral",
+			"type": "string"
+		},
+		{
+			"name": "alimentante",
+			"type": "string"
+		},
+		{
+			"name": "sueldoAbuelo",
+			"type": "string"
+		},
+		{
+			"name": "sueldoTio",
+			"type": "string"
+		},
+		{
+			"name": "tipoEmpleo",
+			"type": "string"
+		},
+		{
+			"name": "tiempo",
+			"type": "number"
+		}
+	],
+    "decisions": [
+        {
+            "conditions": {
+                "all": [
+                    {
+                        "fact": "edad",
+                        "operator": "greaterThan",
+                        "value": 21
+                    },
+                    {
+                        "fact": "edad",
+                        "operator": "lessThan",
+                        "value": 25
+                    },
+                    {
+                        "fact": "estudia",
+                        "operator": "equal",
+                        "value": 0
+                    }
+                ]
+            },
+            "event": {
+                "type": "recomendacion",
+                "params": {
+                    "recomendacion": "Recomendación 1"
+                }
+            }
+        },
+        {
+            "conditions": {
+                "all": [
+                    {
+                        "fact": "edad",
+                        "operator": "greaterThanInclusive",
+                        "value": 25
+                    }
+                ]
+            },
+            "event": {
+                "type": "recomendacion",
+                "params": {
+                    "recomendacion": "Recomendación 1"
+                }
+            }
+        },
+        {
+            "conditions": {
+                "all": [
+                    {
+                        "fact": "condicionLaboral",
+                        "operator": "equal",
+                        "value": "Formal"
+                    }
+                ]
+            },
+            "event": {
+                "type": "alimentante",
+                "params": {
+                    "alimentante": "Progenitor"
+                }
+            }
+        },
+        {
+            "conditions": {
+                "all": [
+                    {
+                        "fact": "condicionLaboral",
+                        "operator": "equal",
+                        "value": "Informal"
+                    },
+                    {
+                        "fact": "sueldoAbuelo",
+                        "operator": "equal",
+                        "value": "Minimo"
+                    },
+                    {
+                        "fact": "sueldoTio",
+                        "operator": "equal",
+                        "value": "Minimo"
+                    }
+                ]
+            },
+            "event": {
+                "type": "alimentante",
+                "params": {
+                    "alimentante": "Progenitor"
+                }
+            }
+        },
+        {
+            "conditions": {
+                "all": [
+                    {
+                        "fact": "condicionLaboral",
+                        "operator": "equal",
+                        "value": "Informal"
+                    },
+                    {
+                        "fact": "sueldoAbuelo",
+                        "operator": "equal",
+                        "value": "Regular"
+                    },
+                    {
+                        "fact": "sueldoTio",
+                        "operator": "equal",
+                        "value": "Minimo"
+                    }
+                ]
+            },
+            "event": {
+                "type": "alimentante",
+                "params": {
+                    "alimentante": "Abuelo"
+                }
+            }
+        },
+        {
+            "conditions": {
+                "all": [
+                    {
+                        "fact": "condicionLaboral",
+                        "operator": "equal",
+                        "value": "Informal"
+                    },
+                    {
+                        "fact": "sueldoAbuelo",
+                        "operator": "equal",
+                        "value": "Minimo"
+                    },
+                    {
+                        "fact": "sueldoTio",
+                        "operator": "equal",
+                        "value": "Regular"
+                    }
+                ]
+            },
+            "event": {
+                "type": "alimentante",
+                "params": {
+                    "alimentante": "Tío"
+                }
+            }
+        },
+        {
+            "conditions": {
+                "all": [
+                    {
+                        "fact": "condicionLaboral",
+                        "operator": "equal",
+                        "value": "Informal"
+                    },
+                    {
+                        "fact": "sueldoAbuelo",
+                        "operator": "equal",
+                        "value": "Bueno"
+                    },
+                    {
+                        "fact": "sueldoTio",
+                        "operator": "equal",
+                        "value": "Regular"
+                    }
+                ]
+            },
+            "event": {
+                "type": "alimentante",
+                "params": {
+                    "alimentante": "Abuelo"
+                }
+            }
+        },
+        {
+            "conditions": {
+                "all": [
+                    {
+                        "fact": "condicionLaboral",
+                        "operator": "equal",
+                        "value": "Informal"
+                    },
+                    {
+                        "fact": "sueldoAbuelo",
+                        "operator": "equal",
+                        "value": "Regular"
+                    },
+                    {
+                        "fact": "sueldoTio",
+                        "operator": "equal",
+                        "value": "Bueno"
+                    }
+                ]
+            },
+            "event": {
+                "type": "alimentante",
+                "params": {
+                    "alimentante": "Tío"
+                }
+            }
+        },
+        {
+            "conditions": {
+                "all": [
+                    {
+                        "fact": "condicionLaboral",
+                        "operator": "equal",
+                        "value": "Informal"
+                    },
+                    {
+                        "fact": "sueldoAbuelo",
+                        "operator": "equal",
+                        "value": "Bueno"
+                    },
+                    {
+                        "fact": "sueldoTio",
+                        "operator": "equal",
+                        "value": "Minimo"
+                    }
+                ]
+            },
+            "event": {
+                "type": "alimentante",
+                "params": {
+                    "alimentante": "Abuelo"
+                }
+            }
+        },
+        {
+            "conditions": {
+                "all": [
+                    {
+                        "fact": "condicionLaboral",
+                        "operator": "equal",
+                        "value": "Informal"
+                    },
+                    {
+                        "fact": "sueldoAbuelo",
+                        "operator": "equal",
+                        "value": "Minimo"
+                    },
+                    {
+                        "fact": "sueldoTio",
+                        "operator": "equal",
+                        "value": "Bueno"
+                    }
+                ]
+            },
+            "event": {
+                "type": "alimentante",
+                "params": {
+                    "alimentante": "Tío"
+                }
+            }
+        },
+        {
+            "conditions": {
+                "all": [
+                    {
+                        "fact": "condicionLaboral",
+                        "operator": "equal",
+                        "value": "Informal"
+                    },
+                    {
+                        "fact": "sueldoAbuelo",
+                        "operator": "equal",
+                        "value": "Bueno"
+                    },
+                    {
+                        "fact": "sueldoTio",
+                        "operator": "equal",
+                        "value": "Bueno"
+                    }
+                ]
+            },
+            "event": {
+                "type": "alimentante",
+                "params": {
+                    "alimentante": "Abuelo"
+                }
+            }
+        },
+        {
+            "conditions": {
+                "all": [
+                    {
+                        "fact": "condicionLaboral",
+                        "operator": "equal",
+                        "value": "Informal"
+                    },
+                    {
+                        "fact": "sueldoAbuelo",
+                        "operator": "equal",
+                        "value": "Regular"
+                    },
+                    {
+                        "fact": "sueldoTio",
+                        "operator": "equal",
+                        "value": "Regular"
+                    }
+                ]
+            },
+            "event": {
+                "type": "alimentante",
+                "params": {
+                    "alimentante": "Abuelo"
+                }
+            }
+        },
+        {
+            "conditions": {
+                "all": [
+                    {
+                        "fact": "tipoEmpleo",
+                        "operator": "equal",
+                        "value": "Empleo Publico"
+                    }
+                ]
+            },
+            "event": {
+                "type": "tiempo",
+                "params": {
+                    "tiempo": "3 meses"
+                }
+            }
+        },
+        {
+            "conditions": {
+                "all": [
+                    {
+                        "fact": "tipoEmpleo",
+                        "operator": "equal",
+                        "value": "Empleo Privado"
+                    }
+                ]
+            },
+            "event": {
+                "type": "tiempo",
+                "params": {
+                    "tiempo": "1 mes"
+                }
+            }
+        },
+        {
+            "conditions": {
+                "all": [
+                    {
+                        "fact": "alimentante",
+                        "operator": "equal",
+                        "value": "Progenitor"
+                    },
+                    {
+                        "fact": "tiempo",
+                        "operator": "equal",
+                        "value": "1 mes"
+                    }
+                ]
+            },
+            "event": {
+                "type": "recomendacion",
+                "params": {
+                    "recomendacion": "Recomendación 2"
+                }
+            }
+        },
+        {
+            "conditions": {
+                "all": [
+                    {
+                        "fact": "alimentante",
+                        "operator": "equal",
+                        "value": "Progenitor"
+                    },
+                    {
+                        "fact": "tiempo",
+                        "operator": "equal",
+                        "value": "3 meses"
+                    }
+                ]
+            },
+            "event": {
+                "type": "recomendacion",
+                "params": {
+                    "recomendacion": "Recomendación 3"
+                }
+            }
+        },
+        {
+            "conditions": {
+                "all": [
+                    {
+                        "fact": "alimentante",
+                        "operator": "equal",
+                        "value": "Abuelo"
+                    },
+                    {
+                        "fact": "tiempo",
+                        "operator": "equal",
+                        "value": "1 mes"
+                    }
+                ]
+            },
+            "event": {
+                "type": "recomendacion",
+                "params": {
+                    "recomendacion": "Recomendación 4"
+                }
+            }
+        },
+        {
+            "conditions": {
+                "all": [
+                    {
+                        "fact": "alimentante",
+                        "operator": "equal",
+                        "value": "Tío"
+                    },
+                    {
+                        "fact": "tiempo",
+                        "operator": "equal",
+                        "value": "1 mes"
+                    }
+                ]
+            },
+            "event": {
+                "type": "recomendacion",
+                "params": {
+                    "recomendacion": "Recomendación 4"
+                }
+            }
+        },
+        {
+            "conditions": {
+                "all": [
+                    {
+                        "fact": "alimentante",
+                        "operator": "equal",
+                        "value": "Abuelo"
+                    },
+                    {
+                        "fact": "tiempo",
+                        "operator": "equal",
+                        "value": "3 meses"
+                    }
+                ]
+            },
+            "event": {
+                "type": "recomendacion",
+                "params": {
+                    "recomendacion": "Recomendación 5"
+                }
+            }
+        },
+        {
+            "conditions": {
+                "all": [
+                    {
+                        "fact": "alimentante",
+                        "operator": "equal",
+                        "value": "Tío"
+                    },
+                    {
+                        "fact": "tiempo",
+                        "operator": "equal",
+                        "value": "3 meses"
+                    }
+                ]
+            },
+            "event": {
+                "type": "recomendacion",
+                "params": {
+                    "recomendacion": "Recomendación 5"
+                }
+            }
+        }
+    ]
+}
